@@ -1,0 +1,24 @@
+\begin{table}[!htbp]
+\centering
+\renewcommand{\arraystretch}{1.6}
+\setlength{\tabcolsep}{8pt}
+\caption{Per-component PNBs of the divide-and-conquer PNB phase for \Forro 5.5/256. The output mask of the distinguisher is split into its single-bit components $\Gamma_i$. For each component $i$, $P_i$ is the set of key bits that are neutral for that component alone, listed with the key bits numbered as in equation (1) of the paper; $|P_i|$ is its size, $m_i$ is the number of key bits that still have to be guessed for the component, and $\varepsilon_i$ is its conditional correlation.}
+\label{app:pnbtab-55}
+\begin{tabular}{@{}cccc p{8cm} c@{}}
+\toprule
+$\boldsymbol{i}$ & $\boldsymbol{\Gamma_i}$ & $\boldsymbol{|P_i|}$ & $\boldsymbol{m_i}$ & \textbf{PNBs $(\boldsymbol{P_i})$} & $\boldsymbol{\varepsilon_i}$ \\
+\midrule
+1 & $\Gamma^{(4)}_{2}[0]$ & 59 & 23 &
+\{24, 25, 26, 27, 28, 29, 30, 31, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 251, 252, 253, 254, 255\} & 1 \\
+\midrule
+2 & $\Gamma^{(4)}_{9}[0]$ & 76 & 6 &
+\{8, 9, 10, 11, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 48, 49, 50, 59, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 96, 97, 98, 99, 100, 101, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 251, 252, 253, 254, 255\} & 1 \\
+\midrule
+3 & $\Gamma^{(4)}_{14}[0]$ & 59 & 23 &
+\{24, 25, 26, 27, 28, 29, 30, 31, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 251, 252, 253, 254, 255\} & 1 \\
+\midrule
+4 & $\Gamma^{(4)}_{14}[27]$ & 56 & 26 &
+\{21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 35, 36, 37, 38, 39, 40, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 234, 235, 236, 237, 238, 239, 240, 251\} & 0.94 \\
+\bottomrule
+\end{tabular}
+\end{table}

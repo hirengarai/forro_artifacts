@@ -1,0 +1,26 @@
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.3}
+\caption{Trail enumeration for $f_2$ in the $5.5$-round attack. The enumeration starts from the target bit $v^{[21]}_{0}[8]$ and goes forward one operation at a time. In each row, the mask on the left of the arrow is replaced by masks on the inputs of the operation that produced it: a modular addition [add], an XOR [xor], or a renaming [rename] of a word that the subround leaves unchanged. \actbit{Red italic} bits are active in every kept trail and \arbbit{green} bits only in some of them. The column \#coeffs gives the number of Walsh coefficients kept after the step, and $\rho^2$ the puncturing correlation reached so far. The last row is the final key addition: each remaining state word is expressed through the keystream word $\bar z_j$ and the key word $k_j$; its entries give the number of coefficients, bounded by two to the number of keystream and key bits kept, and the final correlation $\rho_2^2$.}
+\label{tab:trail-55-f2}
+\begin{tabular}{@{}c l r r@{}}
+\toprule
+Subround & Active & \#coeffs & $\rho^2$ \\
+\midrule
+21 & $v^{[21]}_{0}[\actbit{8}]$ & 1 & 1 \\
+\midrule
+22 & $v^{[21]}_{0}[\actbit{8}] \leftarrow \{v^{[22]}_{0}[\actbit{8}],\, t_{1}[\actbit{8}]\}$ [xor] & 1 & 1 \\
+  \cmidrule{2-4}
+   & $t_{1}[\actbit{8}] \leftarrow \{v^{[22]}_{1}[\actbit{16},\arbbit{15{-}8}],\, v^{[22]}_{6}[\actbit{8},\arbbit{7{-}0}]\}$ [add] & 766 & 1 \\
+   \midrule
+   end &
+\begin{tabular}[t]{@{}l@{}}
+$v^{[22]}_{6}[\actbit{8},\arbbit{7{-}0}]$, \\
+$v^{[22]}_{1}[\actbit{16},\arbbit{15{-}8}] \leftarrow \{\bar z_{1}[\actbit{16},\arbbit{15{-}6}],\; k_{1}[\actbit{16},\arbbit{15{-}9}]\}$, \\
+$v^{[22]}_{0}[\actbit{8}] \leftarrow \{\bar z_{0}[\actbit{8},\arbbit{7{-}0}],\; k_{0}[\actbit{8},\arbbit{7{-}0}]\}$ \\
+\end{tabular}
+& $\leqslant 2^{26+15}$ & $2^{-0.01}$ \\
+\bottomrule
+\end{tabular}
+\end{table}

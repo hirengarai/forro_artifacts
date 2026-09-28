@@ -1,0 +1,24 @@
+\begin{table}[!htbp]
+\centering
+\renewcommand{\arraystretch}{1.6}
+\setlength{\tabcolsep}{8pt}
+\caption{Per-component PNBs of the divide-and-conquer PNB phase for \Forro 5/256. The output mask of the distinguisher is split into its single-bit components $\Gamma_i$. For each component $i$, $P_i$ is the set of key bits that are neutral for that component alone, listed with the key bits numbered as in equation (1) of the paper; $|P_i|$ is its size, $m_i$ is the number of key bits that still have to be guessed for the component, and $\varepsilon_i$ is its conditional correlation.}
+\label{app:pnbtab-5}
+\begin{tabular}{@{}cccc p{8cm} c@{}}
+\toprule
+$\boldsymbol{i}$ & $\boldsymbol{\Gamma_i}$ & $\boldsymbol{|P_i|}$ & $\boldsymbol{m_i}$ & \textbf{PNBs $(\boldsymbol{P_i})$} & $\boldsymbol{\varepsilon_i}$ \\
+\midrule
+1 & $\Gamma^{(3)}_{6}[10]$ & 42 & 47 &
+\{5, 6, 7, 8, 20, 21, 22, 23, 24, 25, 59, 60, 61, 62, 63, 117, 118, 119, 120, 121, 133, 134, 135, 136, 137, 142, 143, 144, 145, 146, 147, 165, 166, 167, 168, 169, 197, 198, 199, 200, 201, 236\} & 0.93 \\
+\midrule
+2 & $\Gamma^{(3)}_{10}[0]$ & 55 & 34 &
+\{16, 17, 20, 21, 22, 23, 24, 25, 59, 60, 61, 62, 63, 133, 134, 135, 136, 137, 142, 143, 144, 145, 146, 147, 165, 166, 167, 168, 169, 197, 198, 199, 200, 201, 207, 208, 209, 210, 211, 216, 217, 218, 219, 220, 221, 232, 233, 236, 237, 238, 239, 240, 241, 242, 243\} & 1 \\
+\midrule
+3 & $\Gamma^{(3)}_{10}[10]$ & 27 & 62 &
+\{12, 13, 14, 15, 16, 17, 126, 127, 207, 208, 209, 210, 211, 216, 217, 218, 219, 220, 221, 228, 229, 230, 231, 232, 233, 242, 243\} & 0.88 \\
+\midrule
+4 & $\Gamma^{(3)}_{14}[0]$ & 50 & 39 &
+\{16, 17, 20, 21, 22, 23, 24, 25, 59, 60, 61, 62, 63, 142, 143, 144, 145, 146, 147, 165, 166, 167, 168, 169, 197, 198, 199, 200, 201, 207, 208, 209, 210, 211, 216, 217, 218, 219, 220, 221, 232, 233, 236, 237, 238, 239, 240, 241, 242, 243\} & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}

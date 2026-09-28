@@ -1,0 +1,61 @@
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{3pt}
+\caption{Trail enumeration for $f_1$ in the $5.5$-round attack. The enumeration starts from the target bit $v^{[18]}_{14}[27]$ and goes forward one operation at a time. In each row, the mask on the left of the arrow is replaced by masks on the inputs of the operation that produced it: a modular addition [add], an XOR [xor], or a renaming [rename] of a word that the subround leaves unchanged. \actbit{Red italic} bits are active in every kept trail and \arbbit{green} bits only in some of them. The column \#coeffs gives the number of Walsh coefficients kept after the step, and $\rho^2$ the puncturing correlation reached so far. The last row is the final key addition: each remaining state word is expressed through the keystream word $\bar z_j$ and the key word $k_j$; its entries give the number of coefficients, bounded by two to the number of keystream and key bits kept, and the final correlation $\rho_1^2$.}
+\label{tab:trail-55-f1}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}c l r r@{}}
+\toprule
+Subround & Active & \#coeffs & $\rho^2$ \\
+\midrule
+18 & $v^{[18]}_{14}[\actbit{27}]$ & 1 & 1 \\
+\midrule
+19 & $v^{[18]}_{14}[\actbit{27}] \leftarrow \{t_{14}[\actbit{27},\arbbit{26{-}19}],\, t_{1}[\actbit{27},\arbbit{26{-}19}]\}$ [add] & 510 & $2^{-0.01}$ \\
+  \cmidrule{2-4}
+   & $t_{1}[\actbit{27},\arbbit{26{-}19}] \leftarrow \{v^{[19]}_{1}[\actbit{27},\arbbit{26{-}19}],\, t_{2}[\actbit{27},\arbbit{26{-}19}]\}$ [xor] & 510 & $2^{-0.01}$ \\
+  \cmidrule{2-4}
+   & $t_{14}[\actbit{27},\arbbit{26{-}19}] \leftarrow \{v^{[19]}_{14}[\actbit{22},\arbbit{21{-}17}],\, v^{[19]}_{1}[\arbbit{26{-}19}]\}$ [add] & 31048 & $2^{-0.03}$ \\
+  \cmidrule{2-4}
+   & $t_{2}[\actbit{27},\arbbit{26{-}19}] \leftarrow \{v^{[19]}_{2}[\arbbit{31{-}29},\actbit{3},\arbbit{2{-}0}],\, v^{[19]}_{6}[\actbit{27},\arbbit{26{-}20}]\}$ [add] & 317376 & $2^{-0.09}$ \\
+\midrule
+20 & $v^{[19]}_{2}[\arbbit{31{-}29},\actbit{3},\arbbit{2{-}0}] \leftarrow \{v^{[20]}_{2}[\arbbit{31{-}29},\actbit{3},\arbbit{2{-}0}],\, t_{3}[\arbbit{31{-}29},\actbit{3},\arbbit{2{-}0}]\}$ [xor] & 317376 & $2^{-0.09}$ \\
+  \cmidrule{2-4}
+   & $t_{3}[\arbbit{31{-}29},\actbit{3},\arbbit{2{-}0}] \leftarrow \{v^{[20]}_{3}[\actbit{11},\arbbit{10{-}5}],\, v^{[20]}_{7}[\arbbit{31,30},\actbit{3},\arbbit{2,1}]\}$ [add] & 357416 & $2^{-0.76}$ \\
+\midrule
+21 & $v^{[20]}_{3}[\actbit{11},\arbbit{10{-}5}] \leftarrow \{v^{[21]}_{3}[\actbit{11},\arbbit{10{-}5}],\, t_{0}[\actbit{11},\arbbit{10{-}5}]\}$ [xor] & 357416 & $2^{-0.76}$ \\
+  \cmidrule{2-4}
+   & $t_{0}[\actbit{11},\arbbit{10{-}5}] \leftarrow \{v^{[21]}_{0}[\actbit{19},\arbbit{18{-}13}],\, v^{[21]}_{5}[\actbit{11},\arbbit{10{-}8}]\}$ [add] & 1288208 & $2^{-1.13}$ \\
+\midrule
+22 & $v^{[21]}_{6}[\actbit{27},\arbbit{26{-}20}] \leftarrow \{t_{6}[\actbit{5},\arbbit{4{-}2}],\, t_{11}[\actbit{27},\arbbit{26{-}21}]\}$ [add] & 2910336 & $2^{-1.22}$ \\
+  \cmidrule{2-4}
+   & $v^{[21]}_{1}[\arbbit{26{-}19}] \leftarrow \{t_{1}[\arbbit{26{-}21}],\, t_{6}[\arbbit{26{-}24},\actbit{5},\arbbit{4{-}2}]\}$ [add] & 4511424 & $2^{-1.43}$ \\
+  \cmidrule{2-4}
+   & $v^{[21]}_{0}[\actbit{19},\arbbit{18{-}13}] \leftarrow \{v^{[22]}_{0}[\actbit{19},\arbbit{18{-}13}],\, t_{1}[\arbbit{26{-}21},\actbit{19},\arbbit{18{-}13}]\}$ [xor] & 4511424 & $2^{-1.43}$ \\
+  \cmidrule{2-4}
+   & $t_{11}[\actbit{27},\arbbit{26{-}21}] \leftarrow \{v^{[22]}_{11}[\actbit{27},\arbbit{26{-}21}],\, v^{[22]}_{12}[\actbit{27},\arbbit{26{-}24}]\}$ [add] & 8384832 & $2^{-1.53}$ \\
+  \cmidrule{2-4}
+   & $t_{6}[\arbbit{26{-}24},\actbit{5},\arbbit{4{-}2}] \leftarrow \{v^{[22]}_{6}[\arbbit{26{-}24},\actbit{5},\arbbit{4{-}2}],\, v^{[22]}_{11}[\actbit{27},\arbbit{26{-}21},\actbit{5},\arbbit{4{-}2}]\}$ [xor] & 8384832 & $2^{-1.53}$ \\
+  \cmidrule{2-4}
+   & \begin{tabular}[t]{@{}l@{}}
+        $t_{1}[\arbbit{26{-}21},\actbit{19},\arbbit{18{-}13}] \leftarrow \{v^{[22]}_{1}[\arbbit{31{-}29},\actbit{27},\arbbit{26{-}21},\arbbit{2{-}0}],$ \\
+        \quad $v^{[22]}_{6}[\arbbit{25{-}23},\actbit{19},\arbbit{18{-}16},\actbit{5},\arbbit{4{-}2}]\}$ [add] \\
+     \end{tabular} & 20479104 & $2^{-2.13}$ \\
+  \cmidrule{2-4}
+   & $v^{[22]}_{14}[\actbit{22},\arbbit{21{-}17}] = v^{[19]}_{14}$, $v^{[22]}_{5}[\actbit{11},\arbbit{10{-}8}] = v^{[21]}_{5}$, $v^{[22]}_{3}[\actbit{11},\arbbit{10{-}7}] = v^{[21]}_{3}$ [rename] & 20479104 & $2^{-2.13}$ \\
+   \midrule
+   end &
+\begin{tabular}[t]{@{}l@{}}
+$v^{[22]}_{14}[\actbit{22},\arbbit{21{-}17}]$, $v^{[22]}_{12}[\actbit{27},\arbbit{26{-}24}]$, $v^{[22]}_{7}[\arbbit{31,30},\actbit{3},\arbbit{2,1}]$, \\
+$v^{[22]}_{6}[\arbbit{25{-}23},\actbit{19},\arbbit{18{-}16},\actbit{5},\arbbit{4{-}2}]$, $v^{[22]}_{5}[\actbit{11},\arbbit{10{-}8}]$, \\
+$v^{[22]}_{11}[\actbit{27},\arbbit{26{-}21},\actbit{5},\arbbit{4{-}2}] \leftarrow \{\bar z_{11}[\actbit{27},\arbbit{26{-}23},\actbit{5},\arbbit{4,3}],$ $k_{11}[\actbit{27},\arbbit{26{-}21},\actbit{5},\arbbit{4{-}0}]\}$, \\
+$v^{[22]}_{3}[\actbit{11},\arbbit{10{-}7}] \leftarrow \{\bar z_{3}[\actbit{11},\arbbit{10{-}8}],\; k_{3}[\actbit{11},\arbbit{10{-}6}]\}$, \\
+$v^{[22]}_{2}[\arbbit{31},\actbit{3},\arbbit{2{-}0}] \leftarrow \{\bar z_{2}[\arbbit{31{-}28},\actbit{3},\arbbit{2{-}0}],\; k_{2}[\arbbit{31{-}29},\actbit{3},\arbbit{2{-}0}]\}$, \\
+$v^{[22]}_{1}[\arbbit{31{-}29},\actbit{27},\arbbit{26{-}21},\arbbit{2{-}0}] \leftarrow \{\bar z_{1}[\arbbit{31{-}28},\actbit{27},\arbbit{26{-}23},\arbbit{2{-}0}],$ $k_{1}[\arbbit{31{-}28},\actbit{27},\arbbit{26{-}19},\arbbit{2{-}0}]\}$, \\
+$v^{[22]}_{0}[\actbit{19},\arbbit{18{-}13}] \leftarrow \{\bar z_{0}[\actbit{19},\arbbit{18{-}15}],\; k_{0}[\actbit{19},\arbbit{18{-}12}]\}$ \\
+\end{tabular}
+& $\leqslant 2^{55+44}$ & $2^{-2.96}$ \\
+\bottomrule
+\end{tabular}}
+\end{table}

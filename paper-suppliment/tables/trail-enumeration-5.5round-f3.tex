@@ -1,0 +1,16 @@
+\begin{table}[!htbp]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.3}
+\caption{Trail enumeration for $f_3$ in the $5.5$-round attack. The enumeration starts from the target bit $v^{[22]}_{11}[10]$ and goes forward one operation at a time. In each row, the mask on the left of the arrow is replaced by masks on the inputs of the operation that produced it: a modular addition [add], an XOR [xor], or a renaming [rename] of a word that the subround leaves unchanged. \actbit{Red italic} bits are active in every kept trail and \arbbit{green} bits only in some of them. The column \#coeffs gives the number of Walsh coefficients kept after the step, and $\rho^2$ the puncturing correlation reached so far. The last row is the final key addition: each remaining state word is expressed through the keystream word $\bar z_j$ and the key word $k_j$; its entries give the number of coefficients, bounded by two to the number of keystream and key bits kept, and the final correlation $\rho_3^2$.}
+\label{tab:trail-55-f3}
+\begin{tabular}{@{}c l r r@{}}
+\toprule
+Subround & Active & \#coeffs & $\rho^2$ \\
+\midrule
+22 & $v^{[22]}_{11}[\actbit{10}]$ & 1 & 1 \\
+\midrule
+end & $v^{[22]}_{11}[\actbit{10}] \leftarrow \{\bar z_{11}[\actbit{10},\arbbit{9{-}0}],\, k_{11}[\actbit{10},\arbbit{9{-}0}]\}$ & 3070 & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
