@@ -86,7 +86,7 @@ $ ./rho4 data/f_1_5round.punc 777 -v
  mean p            0.308904          per key, the pair
  p - c · c'         -0.000055        +-0.000121    -0.45 sigma from 0
  (ρ²)²             2^-1.73           -2.5% from the prediction; E[c²] ≠ (E[c])², which is why the test is per key
- wrong key         2^-7.39           reported, not a pass/fail
+ wrong key         2^-7.39           reported
  ──────────────────────────────────────────────────────────────
  result            factorises
  ──────────────────────────────────────────────────────────────
@@ -101,8 +101,3 @@ predicts with `c * c'` per key, never the key-averaged `(rho^2)^2`, which is
 
 The map holds 2,822,720 terms for target `v14[27]` after subround 18, reads
 36 keystream bits and guesses 60 key bits.
-
-```
-sha256  05ade5f1e2d3385b3b27a5162d95071e1d2cb1bad468ea90e43c47a9c44a2828
-        2140466505685c686b58f14bd046078ee25323ea80ba806717564ff3c90db43f  (.xz)
-```
