@@ -61,9 +61,8 @@ Each script prints the data N and the time C of its phase: 2^28.51 and
 
 ## paper-supplement
 
-The figures and tables that we took out of the paper to keep it short: the
+Some useful figures and tables: the
 trail figures and the mask-extension figures of the 5-, 5.5- and 6-round
 attacks, the key-bit pictures of the 6.5- and 6.75-round attacks, the
 per-component PNB sets and the 5.5-round trail tables. Every PDF has a caption
-that explains it, and its LaTeX source sits next to it. See the README in that
-folder.
+that explains it.
