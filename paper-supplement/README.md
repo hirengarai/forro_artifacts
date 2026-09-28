@@ -1,7 +1,5 @@
 # Paper supplement
 
-Material that was moved out of the paper *Two-Phase Key Recovery of Forró: Bit Puncturing Meets Probabilistic Neutral Bits* to keep it short.
-
 Every PDF here carries a caption that explains what the figure or table shows and how to read it.
 
 ## Figures (`figures/`)
