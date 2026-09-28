@@ -5,8 +5,8 @@ Recovery of Forró: Bit Puncturing Meets Probabilistic Neutral Bits*. There is
 nothing to install. You only need a C++ compiler that understands C++20 (g++ 10
 or clang 10 will do) and Python 3.
 
-There are three experiments, one per folder, plus a folder with the figures and
-tables that did not fit in the paper.
+There are three experiments, one per folder, plus a folder with some helping figures and
+tables.
 
 ## syncopation: the 6.5- and 6.75-round attacks
 
