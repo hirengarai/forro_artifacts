@@ -1,0 +1,229 @@
+\documentclass[border=8pt]{standalone}
+\usepackage[T1]{fontenc}\usepackage{lmodern}\usepackage{xspace}
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\usepackage[table]{xcolor}\usepackage{graphicx}
+\usepackage{tikz}\usetikzlibrary{arrows.meta,calc,fit,positioning,shapes,decorations.pathreplacing}
+\setlength{\textwidth}{17cm}
+% ── Colors used in the figures and tables ────────────────────────────────────
+\definecolor{actcol}{HTML}{D32F2F}   % red: always active / restricted
+\definecolor{arbcol}{HTML}{00A000}   % green: varying
+\definecolor{parcol}{HTML}{0000FF}   % blue: parity
+\colorlet{hilite}{black!12}          % one gray for everything the paper highlights
+
+% ── Bit-index macros ─────────────────────────────────────────────────────────
+% red italic = always active, green upright = varying, blue = parity,
+% red box = punctured, plain black = no class.
+\newcommand{\actbit}[1]{\textcolor{actcol}{\textit{#1}}}
+\newcommand{\arbbit}[1]{\textcolor{arbcol}{#1}}
+\newcommand{\parbit}[1]{\textcolor{parcol}{#1}}
+% Robust, because it is used inside \caption, which is a moving argument.
+\DeclareRobustCommand{\puncbit}[1]{\mbox{\tikz[baseline=(pb.base)]{%
+  \node[draw=actcol, dashed, line width=0.5pt, rounded corners=1pt,
+        inner xsep=1.6pt, inner ysep=1pt] (pb) {\ensuremath{#1}};}}}
+\newcommand{\extbit}[1]{#1}                 % a bit entering a subround
+\newcommand{\freebit}[1]{\parbit{#1}}       % a bit of the parity
+\newcommand{\Pp}[1]{\actbit{#1}}
+\newcommand{\Vv}[1]{\arbbit{#1}}
+
+\newcommand{\CS}{2.6}
+\newcommand{\PS}{11.9}
+\newcommand{\RS}{17}   % row separation for the 2x2 subround panel figure
+\tikzset{
+  wire/.style  = {-{Latex[length=1.9mm,width=1.5mm]}, thick},
+  % fig:forro-sr17-20 is two panels wide and fig:forro-sr17-22 three, so the
+  % three-panel one is resized harder; the sizes below are the two-panel
+  % defaults, and fig:forro-sr17-22 restates them larger to cancel that.
+  rot/.style   = {draw, line width=0.7pt, rounded corners=1.2pt,
+                  inner xsep=3pt, inner ysep=2.2pt,
+                  font=\fontsize{13.1}{15}\selectfont},
+  wname/.style = {font=\fontsize{10.9}{13}\selectfont},
+  diff/.style  = {font=\fontsize{10.9}{13}\selectfont, align=center,
+                  anchor=north, inner sep=1.5pt},
+  title/.style = {font=\fontsize{9.1}{11}\selectfont\bfseries},
+  % a word whose correlation-1 extension stops here: dashed red box + its f_i tag
+  stopbox/.style = {draw=actcol, dashed, line width=0.5pt, rounded corners=1pt,
+                    inner sep=2pt}
+}
+\newcommand{\srfops}{%
+  % --- operators
+  \node[opadd]  (dadd1) at ({3*\CS},-0.5) {};
+  \node[opxor]  (cxor)  at ({2*\CS},-1.5) {};
+  \node[opadd]  (badd)  at ({1*\CS},-2.5) {};
+  \node[rot] (brot)  at ({1*\CS},-3.75) {$\lll 10$};
+  \node[opadd]  (aadd1) at (0,-4.5) {};
+  \node[opxor]  (exor)  at ({4*\CS},-5.2) {};
+  \node[opadd]  (dadd2) at ({3*\CS},-6.0) {};
+  \node[rot] (drot)  at ({3*\CS},-7.25) {$\lll 27$};
+  \node[opadd]  (cadd)  at ({2*\CS},-8.0) {};
+  \node[opxor]  (bxor)  at ({1*\CS},-9.0) {};
+  \node[opadd]  (aadd2) at (0,-9.7) {};
+  \node[rot] (arot)  at (0,-10.8)       {$\lll 8$};
+  % --- vertical wires
+  \draw[wire] (0,0.5) -- (aadd1);        \draw[wire] (aadd1) -- (aadd2);
+  \draw[wire] (aadd2) -- (arot);         \draw[wire] (arot) -- (0,-11.7);
+  \draw[wire] ({1*\CS},0.5) -- (badd);   \draw[wire] (badd) -- (brot);
+  \draw[wire] (brot) -- (bxor);          \draw[wire] (bxor) -- ({1*\CS},-11.7);
+  \draw[wire] ({2*\CS},0.5) -- (cxor);   \draw[wire] (cxor) -- (cadd);
+  \draw[wire] (cadd) -- ({2*\CS},-11.7);
+  \draw[wire] ({3*\CS},0.5) -- (dadd1);  \draw[wire] (dadd1) -- (dadd2);
+  \draw[wire] (dadd2) -- (drot);         \draw[wire] (drot) -- ({3*\CS},-11.7);
+  \draw[wire] ({4*\CS},0.5) -- (exor);   \draw[wire] (exor) -- ({4*\CS},-11.7);
+  % --- horizontal taps (source wire -> operator)
+  \draw[wire] ({4*\CS},-0.5)  -- (dadd1);   % d += e
+  \draw[wire] ({3*\CS},-1.5)  -- (cxor);    % c ^= d
+  \draw[wire] ({2*\CS},-2.5)  -- (badd);    % b += c
+  \draw[wire] ({1*\CS},-4.5)  -- (aadd1);   % a += b
+  \draw[wire] (0,-5.2)        -- (exor);    % e ^= a
+  \draw[wire] ({4*\CS},-6.0)  -- (dadd2);   % d += e
+  \draw[wire] ({3*\CS},-8.0)  -- (cadd);    % c += d
+  \draw[wire] ({2*\CS},-9.0)  -- (bxor);    % b ^= c
+  \draw[wire] ({1*\CS},-9.7) -- (aadd2);   % a += b
+}
+% top / bottom word names: #1..#5 = a,b,c,d,e
+\newcommand{\srfin}[5]{%
+  \node[wname] at (0,2) {$#1$};        \node[wname] at ({1*\CS},2) {$#2$};
+  \node[wname] at ({2*\CS},2) {$#3$};  \node[wname] at ({3*\CS},2) {$#4$};
+  \node[wname] at ({4*\CS},2) {$#5$};}
+\newcommand{\srfout}[5]{%
+  \node[wname] at (0,-12.15) {$#1$};       \node[wname] at ({1*\CS},-12.15) {$#2$};
+  \node[wname] at ({2*\CS},-12.15) {$#3$}; \node[wname] at ({3*\CS},-12.15) {$#4$};
+  \node[wname] at ({4*\CS},-12.15) {$#5$};}
+% Mask carried in / out with correlation 1; $[\,]$ = nothing on that word.
+% Nodes are named ia..ie / oa..oe so that \stopbit can box one of them.
+\newcommand{\srfdiffin}[5]{%
+  \node[diff] (ia) at (0,1.6) {#1};       \node[diff] (ib) at ({1*\CS},1.6) {#2};
+  \node[diff] (ic) at ({2*\CS},1.6) {#3}; \node[diff] (id) at ({3*\CS},1.6) {#4};
+  \node[diff] (ie) at ({4*\CS},1.6) {#5};}
+\newcommand{\srfdiffout}[5]{%
+  \node[diff] (oa) at (0,-12.5) {#1};       \node[diff] (ob) at ({1*\CS},-12.5) {#2};
+  \node[diff] (oc) at ({2*\CS},-12.5) {#3}; \node[diff] (od) at ({3*\CS},-12.5) {#4};
+  \node[diff] (oe) at ({4*\CS},-12.5) {#5};}
+% \stopbit{node}{tag}: put the red puncturing box round the bit whose
+% correlation-1 extension stops here, and tag it with the function it is
+% punctured into, e.g. \stopbit{id}{f_1}
+\newcommand{\stopbit}[2]{%
+  \node[stopbox, fit=(#1)] {};
+  \node[font=\scriptsize, text=actcol, anchor=north] at ($(#1.south)+(0,-0.12)$) {$#2$};}
+
+% ── CPNB figure palette ──────────────────────────────────────────────────────
+% Four fills whose lightness is well separated, so the classification survives
+% black and white printing: white 100%, cpnbcol 80%, synccol 49%, restcol 26%.
+% restcol is actcol darkened, so a restricted bit reads as the same red as an
+% always-active bit while keeping the lightness gap these figures rely on.
+\definecolor{cpnbcol}{RGB}{204,204,204}
+\definecolor{synccol}{RGB}{90,125,205}
+\colorlet{restcol}{actcol!70!black}
+
+% ── Uniform figure frame ─────────────────────────────────────────────────────
+% Every figure is resized to the same stated width and gets the same padding,
+% whatever scale factor that figure uses. The rule is set to zero width: the
+% figures are not boxed, and a visible frame would compete with the dashed red
+% box, which is the one frame in this paper that carries a meaning.
+% #1 is the total width of the framed result, rule and padding included.
+\newlength{\figframewidth}
+\newcommand{\figframe}[2]{%
+  \begingroup
+  \setlength{\fboxrule}{0pt}%
+  \setlength{\fboxsep}{12pt}%
+  \setlength{\figframewidth}{#1}%
+  \addtolength{\figframewidth}{-2\fboxsep}%
+  \addtolength{\figframewidth}{-2\fboxrule}%
+  \fbox{\resizebox{\figframewidth}{!}{#2}}%
+  \endgroup}
+
+% ── ARX operators ────────────────────────────────────────────────────────────
+% The shape carries the meaning, so the figures read correctly without colour:
+% square for addition modulo $2^{32}$, circle for XOR, rounded box for
+% rotation.
+% Operator geometry. Defaults suit the two-panel figures; a figure that is
+% resized harder or softer resets these so the printed size stays the same.
+\newlength{\opsize}\setlength{\opsize}{6mm}
+\newlength{\oprule}\setlength{\oprule}{0.7pt}
+\tikzset{
+  % modular addition: a cross across a square, i.e. $\boxplus$
+  opadd/.style = {draw, line width=\oprule, rectangle, minimum size=\opsize,
+                  inner sep=0pt,
+                  path picture={%
+                    \draw[line width=\oprule]
+                      (path picture bounding box.west) --
+                      (path picture bounding box.east)
+                      (path picture bounding box.south) --
+                      (path picture bounding box.north);}},
+  % rotation: a rounded box, so that it reads as an operator alongside the
+  % square addition and the round XOR without being mistaken for either
+  oprot/.style = {draw, line width=\oprule, rounded corners=1.2pt,
+                  minimum height=\opsize, inner xsep=3pt, inner ysep=2.2pt,
+                  font=\Large},
+  % XOR: a cross running the full diameter of a circle, i.e. $\oplus$
+  opxor/.style = {draw, line width=\oprule, circle, minimum size=\opsize,
+                  inner sep=0pt,
+                  path picture={%
+                    \draw[line width=\oprule]
+                      (path picture bounding box.west) --
+                      (path picture bounding box.east)
+                      (path picture bounding box.south) --
+                      (path picture bounding box.north);}}
+}
+
+% ── Differential-linear arrow ────────────────────────────────────────────────
+% One spelling for every distinguisher in the paper: \dlarrow{4} etc.
+\newcommand{\dlarrow}[1]{%
+  \underset{\text{#1 rounds}}{\overset{\mathcal{DL}}{\longrightarrow}}}
+
+% ── Cipher name ─────────────────────────────────────────────────────────────
+\newcommand{\Forro}{Forr\'o\xspace}
+
+
+\begin{document}
+\begin{minipage}{0.82\textwidth}\centering
+
+\figframe{0.82\textwidth}{%
+\begin{tikzpicture}[every node/.style={transform shape}]
+
+\begin{scope}[xshift=0cm, name prefix=sr17]
+  \srfops
+  \node[title] at ({2*\CS},3.0) {Subround 17};
+  \srfin {v_{0}^{[16]}}{v_{4}^{[16]}}{v_{8}^{[16]}}{v_{12}^{[16]}}{v_{3}^{[16]}}
+  \srfout{v_{0}^{[17]}}{v_{4}^{[17]}}{v_{8}^{[17]}}{v_{12}^{[17]}}{v_{3}^{[17]}}
+  \srfdiffin {$[\,]$}{$[\,]$}{$[\,]$}{$[\,]$}{$[\,]$}
+  \srfdiffout{$[\,]$}{$[\,]$}{$[\,]$}{$[\,]$}{$[\,]$}
+\end{scope}
+
+\begin{scope}[xshift={\PS cm}, name prefix=sr18]
+  \srfops
+  \node[title] at ({2*\CS},3.0) {Subround 18};
+  \srfin {v_{1}^{[17]}}{v_{5}^{[17]}}{v_{9}^{[17]}}{v_{13}^{[17]}}{v_{0}^{[17]}}
+  \srfout{v_{1}^{[18]}}{v_{5}^{[18]}}{v_{9}^{[20]}}{v_{13}^{[20]}}{v_{0}^{[20]}}
+  \srfdiffin {$[\,]$}{$[\,]$}{$\extbit{[0]}$}{$[\,]$}{$[\,]$}
+  \srfdiffout{$[\,]$}{$[\,]$}{$\freebit{[0]}$}{$\freebit{[0,27]}$}{$\freebit{[0]}$}
+\end{scope}
+
+\begin{scope}[xshift=0cm, yshift={-\RS cm}, name prefix=sr19]
+  \srfops
+  \node[title] at ({2*\CS},3.0) {Subround 19};
+  \srfin {v_{2}^{[18]}}{v_{6}^{[18]}}{v_{10}^{[18]}}{v_{14}^{[18]}}{v_{1}^{[18]}}
+  \srfout{v_{2}^{[19]}}{v_{6}^{[20]}}{v_{10}^{[20]}}{v_{14}^{[20]}}{v_{1}^{[19]}}
+  \srfdiffin {$\extbit{[0]}$}{$[\,]$}{$[\,]$}{}{$[\,]$}
+  \node[diff, anchor=north east] (id27) at ({3*\CS+0.18},1.6) {$[\freebit{27},$};
+  \node[diff, anchor=north west] (id0)  at ({3*\CS+0.24},1.6) {$\extbit{0]}$};
+  \srfdiffout{$[\,]$}{$\freebit{[0]}$}{$\freebit{[0]}$}{$\freebit{[27]}$}{$[\,]$}
+  \stopbit{id27}{f_1}
+\end{scope}
+
+\begin{scope}[xshift={\PS cm}, yshift={-\RS cm}, name prefix=sr20]
+  \srfops
+  \node[title] at ({2*\CS},3.0) {Subround 20};
+  \srfin {v_{3}^{[19]}}{v_{7}^{[19]}}{v_{11}^{[19]}}{v_{15}^{[19]}}{v_{2}^{[19]}}
+  \srfout{v_{3}^{[20]}}{v_{7}^{[20]}}{v_{11}^{[20]}}{v_{15}^{[20]}}{v_{2}^{[20]}}
+  \srfdiffin {$[\,]$}{$[\,]$}{$[\,]$}{$[\,]$}{$[\,]$}
+  \srfdiffout{$[\,]$}{$[\,]$}{$[\,]$}{$[\,]$}{$[\,]$}
+\end{scope}
+
+\end{tikzpicture}}
+
+\par\medskip
+\begin{minipage}{\linewidth}\small\setlength{\parindent}{0pt}
+\textbf{Extension of the output mask through subrounds 17 to 20 in the $5$-round attack.} The distinguisher gives a mask on the state after subround 16, shown at the top of the first panel. Each mask bit is carried forward through the operations that pass it with correlation $1$: an XOR, a rotation, or bit $0$ of a modular addition. \parbit{Blue} bits are the terms of the final parity, which the attacker computes from the keystream and the guessed key bits; black bits are intermediate bits that a later subround still uses. A \puncbit{\text{dashed red box}} marks a bit that would next have to cross a modular addition at a position other than $0$. The extension stops there, and that bit becomes the target of the punctured function $f_i$ named at the box. A masked word that the following subrounds do not use keeps its value, so it is labeled with the index of the subround in which it is next used, or 20 if it is not used again.
+\end{minipage}
+\end{minipage}
+\end{document}
