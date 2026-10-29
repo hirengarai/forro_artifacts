@@ -21,7 +21,7 @@ Trail figures on the subround diagrams. Notation as in Section 3.6 of the paper:
 
 `tables.pdf` holds six tables:
 
-- the per-component PNB sets P_i of each single-bit component of the output mask, with their bit indices, for the 5-, 5.5- and 6-round attacks (Appendix B of the paper);
+- the per-component PNB sets P_i of each single-bit component of the output mask, with their bit indices, for the 5-round attacks;
 - the full trail enumerations of f_1, f_2 and f_3 in the 5.5-round attack.
 
 Key bits are numbered as in Equation 1 of the paper.
