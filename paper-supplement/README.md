@@ -19,7 +19,7 @@ Trail figures on the subround diagrams. Notation as in Section 3.6 of the paper:
 
 ## Tables (`tables/`)
 
-`tables.pdf` holds six tables:
+`tables.pdf` holds four tables:
 
 - the per-component PNB sets P_i of each single-bit component of the output mask, with their bit indices, for the 5-round attacks;
 - the full trail enumerations of f_1, f_2 and f_3 in the 5.5-round attack.
